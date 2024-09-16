@@ -1,0 +1,19 @@
+{
+  "name": "image-processor",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build:server": "cd server && npm install",
+    "build:client": "cd client && npm install",
+    "build": "concurrently \"npm run build:server\" \"npm run build:client\"",
+    "start:server": "cd server && npm start",
+    "start:client": "cd client && npm start",
+    "start": "concurrently \"npm run start:server\" \"npm run start:client\""
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^9.0.1"
+  }
+}
