@@ -20,11 +20,9 @@ const DownloadButton: React.FC = () => {
       }
       console.log("Image data received, creating blob...");
 
-      // Extract the Base64 string from the response
       const base64Image = response.data.image.split(",")[1];
       const mimeType = format === "png" ? "image/png" : "image/jpeg";
 
-      // Convert Base64 string to a Blob
       const byteCharacters = atob(base64Image);
       const byteNumbers = new Array(byteCharacters.length);
       for (let i = 0; i < byteCharacters.length; i++) {
@@ -33,7 +31,6 @@ const DownloadButton: React.FC = () => {
       const byteArray = new Uint8Array(byteNumbers);
       const blob = new Blob([byteArray], { type: mimeType });
 
-      // Create a download link and click it programmatically
       const url = URL.createObjectURL(blob);
       const link = document.createElement("a");
       link.href = url;

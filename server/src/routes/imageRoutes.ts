@@ -3,11 +3,10 @@ import multer from "multer";
 import { rotateImage, adjustBrightness } from "../controllers/imageController";
 import path from "path";
 import fs from "fs";
-import sharp from "sharp"; // Required for final image processing
+import sharp from "sharp";
 
 const router = Router();
 
-// Configure multer for file uploads (as before)
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, path.join(__dirname, "../../uploads"));
@@ -47,7 +46,6 @@ router.get("/download", async (req, res) => {
   const { filepath, format } = req.query;
   console.log(`Received request to download: ${filepath} in format: ${format}`);
 
-  // Validate format parameter
   if (format !== "png" && format !== "jpeg") {
     return res
       .status(400)
@@ -62,9 +60,8 @@ router.get("/download", async (req, res) => {
   }
 
   try {
-    let buffer: Buffer = Buffer.alloc(0); // Initialize buffer with an empty buffer
+    let buffer: Buffer = Buffer.alloc(0);
 
-    // Convert to the requested format (PNG or JPEG)
     if (format === "png") {
       buffer = await sharp(inputPath).png().toBuffer();
     } else if (format === "jpeg") {

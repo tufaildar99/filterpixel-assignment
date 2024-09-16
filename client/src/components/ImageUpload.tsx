@@ -32,7 +32,6 @@ const ImageUpload: React.FC = () => {
     onDragLeave: () => {},
   });
 
-  // Extract props manually
   const inputProps = getInputProps();
   const { refKey, ...inputAttributes } = inputProps;
 
